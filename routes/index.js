@@ -6,4 +6,4 @@ app.get('/', (req, res) => {
 
 
 //register other routes here 
-// app.use('/users', require('./user'))
+app.use('/users', require('./user'))
