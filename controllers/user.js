@@ -1,4 +1,6 @@
 var userModel = require('../model/user');
+const jwt = require('jsonwebtoken');
+const config= require('../config')
 
 
 module.exports = {
@@ -10,7 +12,7 @@ module.exports = {
         let password = req.body.password;
 
         userModel.findOne({
-            email:email
+            email: email
         }).then(function (result) {
             if (result == null) {
                 var addUser = new userModel({
@@ -34,7 +36,7 @@ module.exports = {
                     }, null, 3));
                 })
             }
-            else{
+            else {
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({
                     registered: false,
@@ -42,7 +44,43 @@ module.exports = {
                 }, null, 3));
             }
         })
+    },
 
+    async LoginUser(req, res) {
 
+        let email = req.body.email;
+        let password = req.body.password;
+
+        userModel.findOne({
+            email: email,
+            password:password
+        }).then(function (userdata) {
+            if (userdata) {
+                const token = jwt.sign({
+                    email: userdata.email,
+                    id: userdata._id
+                }, config.secret);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
+                    loggedin: true,
+                    message: 'User logged in',
+                    token: token
+                }, null, 3));
+            }
+            else {
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
+                    loggedin: false,
+                    message: 'Invalid username and password'
+                }, null, 3));
+            }
+        }).catch(function (err) {
+            console.log(err)
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                loggedin: false,
+                message: 'Something went wrong please'
+            }, null, 3));
+        })
     }
 }
