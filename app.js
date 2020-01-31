@@ -12,7 +12,7 @@ app.use(cors());
 
 // Environment varibale configuration
 
-
+require('./DB_CONNECTION/db');
 
 app.use(routes);
 app.listen(port);
