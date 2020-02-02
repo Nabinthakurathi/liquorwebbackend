@@ -13,6 +13,9 @@ const userSchema= new mongoose.Schema({
     password:{
         type:String
     },
+    usertyoe:{
+        type:String
+    }
 })
 
 const user= mongoose.model('user', userSchema);

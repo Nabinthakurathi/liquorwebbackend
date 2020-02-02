@@ -19,7 +19,8 @@ module.exports = {
                     name: name,
                     email: email,
                     phone: phone,
-                    password: password
+                    password: password,
+                    usertype:'normal'
                 });
 
                 addUser.save().then(function () {
