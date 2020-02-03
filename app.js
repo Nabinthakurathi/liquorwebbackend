@@ -14,6 +14,8 @@ app.use(cors());
 
 require('./DB_CONNECTION/db');
 
+app.use("/asset/uploads/images/drinks", express.static("asset/uploads/images/drinks"))
+
 app.use(routes);
 app.listen(port);
 console.log('app is listening on '+port);

@@ -2,10 +2,11 @@ const app = module.exports = require('express')();
 let multer = require('multer');
 let path = require('path')
 let drinkModel = require('../model/drink')
+let adminController=require('../controllers/admin')
 
 var ImagefileName = '';
 var storage = multer.diskStorage({
-    destination: 'upload/images/users',
+    destination: 'asset/uploads/images/drinks',
     filename: function (req, file, callback) {
         const extension = path.extname(file.originalname);
         ImagefileName = file.fieldname + Date.now() + extension;
@@ -31,6 +32,9 @@ var upload = multer({
 });
 
 app.post('/upload/drink/image', upload.single('image'), function (req, res) {
+
+    console.log(req.body);
+    console.log(ImagefileName)
 
     let drinkname = req.body.name;
     let drinktype = req.body.drinktype;
@@ -61,3 +65,6 @@ app.post('/upload/drink/image', upload.single('image'), function (req, res) {
 
 
 })
+
+app.get('/getalldrink', adminController.getAllDrinks);
+app.delete('/delete_drink', adminController.deleteDrink);
