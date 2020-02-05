@@ -68,3 +68,4 @@ app.post('/upload/drink/image', upload.single('image'), function (req, res) {
 
 app.get('/getalldrink', adminController.getAllDrinks);
 app.delete('/delete_drink', adminController.deleteDrink);
+app.get('/getsingledrink/:id', adminController.getSingleDrink);

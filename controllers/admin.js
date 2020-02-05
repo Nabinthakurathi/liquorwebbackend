@@ -39,5 +39,24 @@ module.exports= {
                 message: 'Failed to delete drink',
             }, null, 3));
         })
+    },
+
+    async getSingleDrink(req, res){
+        var id= req.params.id;
+        drinkModel.findById(id).then(function(data){
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                selected: true,
+                message: 'Drink selected',
+                data:data
+            }, null, 3));
+        }).catch(function(){
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                selected: false,
+                message: 'Drink selection failed',
+                data:data
+            }, null, 3));
+        })
     }
 }
