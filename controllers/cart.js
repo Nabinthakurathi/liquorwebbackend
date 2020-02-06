@@ -18,11 +18,13 @@ module.exports = {
             wishlist: req.body.wishlist
         })
 
+      
         addDrinkToCart.save().then(function () {
+            
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
                 added: true,
-                message: 'Drink added to cart'
+                message: 'Drink added'
             }, null, 3));
         }).catch(function () {
             res.writeHead(200, { 'Content-Type': 'application/json' });
