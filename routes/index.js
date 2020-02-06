@@ -1,7 +1,7 @@
 const app = module.exports = require('express')();
-const port= 8080;
+const port = 8080;
 app.get('/', (req, res) => {
-    res.send({ msg: 'server is on'+ port});
+    res.send({ msg: 'server is on' + port });
 });
 
 
@@ -11,3 +11,4 @@ app.use('/admin', require('./admin'))
 app.use('/categories', require('./categories'))
 app.use('/cart', require('./cart'))
 app.use('/comment', require('./comment'))
+app.use('/rating', require('./rating'))
