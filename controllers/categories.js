@@ -7,8 +7,6 @@ module.exports= {
     async getDrinksCatories(req, res){
         let drinktype=req.params.drinktype;
 
-        // console.log('request received')
-
         drinkModel.find({
             drinktype:drinktype
         }).then(function(result){
@@ -18,7 +16,8 @@ module.exports= {
                 message: 'Drinks selected',
                 data:result
             }, null, 3));
-        }).catch(function(){
+        }).catch(function(ddd){
+            
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
                 getdrinks: false,

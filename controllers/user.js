@@ -65,7 +65,8 @@ module.exports = {
                 res.end(JSON.stringify({
                     loggedin: true,
                     message: 'User logged in',
-                    token: token
+                    token: token,
+                    userdata:userdata
                 }, null, 3));
             }
             else {

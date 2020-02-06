@@ -9,3 +9,4 @@ app.get('/', (req, res) => {
 app.use('/users', require('./user'))
 app.use('/admin', require('./admin'))
 app.use('/categories', require('./categories'))
+app.use('/cart', require('./cart'))

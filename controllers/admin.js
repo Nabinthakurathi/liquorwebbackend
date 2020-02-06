@@ -1,6 +1,6 @@
 var drinkModel = require('../model/drink');
 const express = require('express')
-const app = express();
+
 
 
 module.exports = {
@@ -55,7 +55,6 @@ module.exports = {
             res.end(JSON.stringify({
                 selected: false,
                 message: 'Drink selection failed',
-                data: data
             }, null, 3));
         })
     },
