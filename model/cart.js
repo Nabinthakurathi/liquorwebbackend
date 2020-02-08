@@ -28,12 +28,6 @@ const cartSchema = new mongoose.Schema({
     userphone: {
         type: String
     },
-    cart: {
-        type: Boolean
-    },
-    wishlist: {
-        type: Boolean
-    }
 })
 
 const cart = mongoose.model('cart', cartSchema);

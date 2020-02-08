@@ -18,9 +18,9 @@ module.exports = {
             wishlist: req.body.wishlist
         })
 
-      
+
         addDrinkToCart.save().then(function () {
-            
+
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
                 added: true,
@@ -34,7 +34,45 @@ module.exports = {
             }, null, 3));
         })
 
+    },
 
+    async getSpecificUserCartDetails(req, res) {
+
+        cartModel.find({
+            userid: req.body.userid,
+        }).then(function (cartData) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                added: true,
+                message: 'Cart Data selected',
+                data: cartData
+            }, null, 3));
+        }).catch(function () {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                added: false,
+                message: 'Cart details failed to select',
+            }, null, 3));
+        })
+    },
+
+    
+    async getAllCartOrders(req, res) {
+
+        cartModel.find().then(function (cartData) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                added: true,
+                message: 'Cart Data selected',
+                data: cartData
+            }, null, 3));
+        }).catch(function () {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
+                added: false,
+                message: 'Cart details failed to select',
+            }, null, 3));
+        })
     }
 }
 
