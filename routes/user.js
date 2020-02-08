@@ -1,4 +1,5 @@
 const app= module.exports= require('express')();
-const userModel= require('../controllers/user')
+const userController= require('../controllers/user')
 
-app.post('/signup', userModel.RegisterUser);
+app.post('/signup', userController.RegisterUser);
+app.post('/login', userController.LoginUser);
